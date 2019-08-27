@@ -1,28 +1,15 @@
-var peso = document.getElementById("tu-peso");
-var marte = document.getElementById("botoncito");
-marte.addEventListener("click", Peso_Marte);
-var jupiter = document.getElementById("botoncito2");
-jupiter.addEventListener("click", Peso_jupiter);
-var resul = document.querySelector(".resultado");
-
-function Peso_Marte(){
-    var g_tierra = 9.8;
-    var g_marte = 3.7;
-    var peso_final = 0;
-    var p = parseInt(peso.value);
-    peso_final = p * g_marte / g_tierra;
-    opcion = "Marte";
-    peso_final = parseInt(peso_final);
-    resul.textContent = "Tu peso en " + opcion + " es de: " + peso_final + " libras";
-}
-
-function Peso_jupiter(){
-    var p = parseInt(peso.value);
-    var g_tierra = 9.8;
-    var g_jupiter = 24.8;
-    var peso_final = 0;
-    peso_final = p * g_jupiter / g_tierra;
-    opcion = "Jupiter";
-    peso_final = parseInt(peso_final);
-    resul.textContent = "Tu peso en " + opcion + " es de: " + peso_final + " libras";
-}
+const planets = document.querySelectorAll(".planet--js");
+[...planets].forEach((planet) => {
+    planet.addEventListener("click", (e) => {
+        const element = e.currentTarget;
+        const results = document.querySelector(".resultado");
+        const entry = parseInt(document.getElementById("tu-peso").value);
+        const config = {
+            tierra: 9.8,
+            peso: Number.isInteger(entry) ? entry : 0,
+            planetNumber: element.getAttribute('data-number') || 3.7,
+        }  
+        const pesoFinal = Math.round(config.peso * config.planetNumber / config.tierra);
+        results.textContent = `Tu peso en "${element.value}" es de: ${pesoFinal} libras.`;
+    });
+});
