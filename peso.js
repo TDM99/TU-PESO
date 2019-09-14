@@ -1,28 +1,25 @@
-var peso = document.getElementById("tu-peso");
-var marte = document.getElementById("botoncito");
-marte.addEventListener("click", Peso_Marte);
-var jupiter = document.getElementById("botoncito2");
-jupiter.addEventListener("click", Peso_jupiter);
-var resul = document.querySelector(".resultado");
+const peso = document.getElementById("tu-peso");
 
-function Peso_Marte(){
-    var g_tierra = 9.8;
-    var g_marte = 3.7;
-    var peso_final = 0;
-    var p = parseInt(peso.value);
-    peso_final = p * g_marte / g_tierra;
-    opcion = "Marte";
-    peso_final = parseInt(peso_final);
-    resul.textContent = "Tu peso en " + opcion + " es de: " + peso_final + " libras";
+let marte = document.getElementById("btn-Marte");
+marte.addEventListener("click", pesoMarte);
+let jupiter = document.getElementById("btn-Jupiter");
+jupiter.addEventListener("click", pesoJupiter);
+let resul = document.querySelector(".resultado");
+
+function pesoMarte(){
+    pesoPlanetas(3.7, "marte");
+}
+function pesoJupiter(){
+    pesoPlanetas(24.8, "jupiter");
 }
 
-function Peso_jupiter(){
-    var p = parseInt(peso.value);
-    var g_tierra = 9.8;
-    var g_jupiter = 24.8;
-    var peso_final = 0;
-    peso_final = p * g_jupiter / g_tierra;
-    opcion = "Jupiter";
+function pesoPlanetas(gp, planeta){
+    let g_tierra = 9.8;
+    let g_planeta = gp;
+    let peso_final = 0;
+    let p = parseInt(peso.value);
+    peso_final = p * g_planeta / g_tierra;
+    opcion = planeta;
     peso_final = parseInt(peso_final);
     resul.textContent = "Tu peso en " + opcion + " es de: " + peso_final + " libras";
 }
